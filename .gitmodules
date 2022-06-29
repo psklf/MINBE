@@ -1,0 +1,8 @@
+[submodule "application/thirdparty/glfw"]
+	path = application/thirdparty/glfw
+	url = https://github.com/glfw/glfw.git
+	branch = master
+[submodule "thirdparty/cgltf"]
+	path = thirdparty/cgltf
+	url = https://github.com/jkuhlmann/cgltf.git
+	branch = master
