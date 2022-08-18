@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.3)
 
-set (CMAKE_CXX_STANDARD 11)
+set (CMAKE_CXX_STANDARD 14)
 set (CMAKE_CXX_FLAGS "-Wall ")
 
 project(minbe)
@@ -28,7 +28,15 @@ set(engine_srcs src/minbe_api.cc
 
 add_library(minbe ${engine_srcs})
 
-if (CMAKE_SYSTEM_NAME STREQUAL "Android")
+if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic)
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Android")
   target_link_libraries(minbe gles3 log)
-endif ()
+  target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic)
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+  target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic)
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+  target_link_libraries(minbe log)
+  target_compile_options(${PROJECT_NAME} PRIVATE /W4)
+endif()
 

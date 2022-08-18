@@ -15,6 +15,12 @@ int Draw();
 
 int Destroy();
 
+static void key_callback(GLFWwindow *window, int key, int scancode,
+                         int action, int mods) {
+  if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+    glfwSetWindowShouldClose(window, GLFW_TRUE);
+}
+
 int main()
 {
     glfwInit();
@@ -23,22 +29,22 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     GLFWwindow* window = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
-    if (window == NULL)
-    {
+    if (window == NULL) {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
         return -1;
     }
+
     glfwMakeContextCurrent(window);
 
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
 
-    glViewport(0, 0, 800, 600);
+    glfwSetKeyCallback(window, key_callback);
 
+    glViewport(0, 0, 800, 600);
 
     Prepare();
 
@@ -63,7 +69,7 @@ int main()
 
 int Prepare() {
   minbe_init();
-  minbe_load("./cube.gltf");
+  minbe_load("./mesh11_61818.gltf");
     return 0;
 }
 

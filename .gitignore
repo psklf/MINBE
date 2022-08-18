@@ -31,4 +31,8 @@
 *.out
 *.app
 
-build_/
+build_
+/*build_
+
+# MacOS
+.DS_Store

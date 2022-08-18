@@ -10,6 +10,8 @@ namespace minbe {
     public:
       Renderable(cgltf_primitive &p);
 
+      void Setup();
+
       cgltf_primitive &GetPrimitve() { return primitive_; }
 
       GLuint vao_;
